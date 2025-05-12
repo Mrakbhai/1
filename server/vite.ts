@@ -1,12 +1,10 @@
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
-import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
+import * as vite from "vite";
 import viteConfig from "../vite.config.ts";
 import { nanoid } from "nanoid";
-
-const viteLogger = createLogger();
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -26,21 +24,15 @@ export async function setupVite(app: Express, server: Server) {
     allowedHosts: true,
   };
 
-  const vite = await createViteServer({
+  const viteServer = await vite.createServer({
     ...viteConfig,
     configFile: false,
-    customLogger: {
-      ...viteLogger,
-      error: (msg, options) => {
-        viteLogger.error(msg, options);
-        process.exit(1);
-      },
-    },
     server: serverOptions,
     appType: "custom",
   });
 
-  app.use(vite.middlewares);
+  app.use(viteServer.middlewares);
+
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
 
@@ -57,10 +49,10 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`
       );
-      const page = await vite.transformIndexHtml(url, template);
+      const page = await viteServer.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
-      vite.ssrFixStacktrace(e as Error);
+      viteServer.ssrFixStacktrace(e as Error);
       next(e);
     }
   });
@@ -80,4 +72,4 @@ export function serveStatic(app: Express) {
   app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
-    }
+  }
