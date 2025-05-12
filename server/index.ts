@@ -1,9 +1,15 @@
 import express, { type Request, Response, NextFunction } from "express";
+import cors from "cors";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { setupVite, log } from "./vite"; // Removed serveStatic
 
 const app = express();
 
+// Middleware
+app.use(cors({
+  origin: "https://<your-netlify-site>.netlify.app", // Replace with your actual Netlify URL
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -42,22 +48,22 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  // Dev or Production mode
   if (app.get("env") === "development") {
     await setupVite(app, server);
-  } else {
-    serveStatic(app);
   }
 
   const port = process.env.PORT || 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  }).on('error', (err: any) => {
-    if (err.code === 'EADDRINUSE') {
+  server.listen(
+    {
+      port,
+      host: "0.0.0.0",
+      reusePort: true,
+    },
+    () => {
+      log(`serving on port ${port}`);
+    }
+  ).on("error", (err: any) => {
+    if (err.code === "EADDRINUSE") {
       const nextPort = parseInt(port.toString()) + 1;
       log(`Port ${port} is busy, trying ${nextPort}`);
       server.listen(nextPort, "0.0.0.0");
