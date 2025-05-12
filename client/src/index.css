@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Add animation to menu */
+.menu-content[data-state="open"] {
+  animation: slideIn 0.3s ease-out;
+}
+
+.menu-content[data-state="closed"] {
+  animation: slideOut 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+:root {
+  /* Light theme - Professional, clean, trustworthy palette */
+  --background: 210 40% 98%; /* Slightly blue tinted white for better readability */
+  --foreground: 215 25% 27%; /* Deep blue-gray for text */
+  --muted: 210 20% 96%; /* Subtle blue-gray for backgrounds */
+  --muted-foreground: 215 20% 45%; /* Medium blue-gray for secondary text */
+  --popover: 0 0% 100%; /* Pure white for popovers */
+  --popover-foreground: 215 25% 27%; /* Same as primary text */
+  --card: 0 0% 100%; /* Pure white for cards */
+  --card-foreground: 215 25% 27%; /* Same as primary text */
+  --border: 215 16% 91%; /* Light blue-gray for borders */
+  --input: 215 16% 91%; /* Light blue-gray for input borders */
+  --primary: 210 90% 45%; /* Strong blue for primary elements */
+  --primary-foreground: 210 40% 98%; /* Light blue-white for text on primary */
+  --primary-dark: 213 56% 15%; /* Darker blue for depth */
+  --primary-light: 196 100% 43%; /* Brighter blue for highlights */
+  --secondary: 210 20% 96%; /* Light blue-gray for secondary elements */
+  --secondary-foreground: 215 25% 27%; /* Dark blue-gray for text on secondary */
+  --accent: 220 70% 50%; /* Vibrant blue accent */
+  --accent-foreground: 0 0% 100%; /* White for text on accent */
+  --destructive: 0 80% 60%; /* Bright red for destructive actions */
+  --destructive-foreground: 0 0% 100%; /* White for text on destructive */
+  --ring: 210 90% 45%; /* Primary blue for focus rings */
+  --success: 142 69% 45%; /* Rich green for success states */
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 215 25% 27%;
+  --sidebar-primary: 210 90% 45%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 220 70% 50%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 215 16% 91%;
+  --sidebar-ring: 210 90% 45%;
+  --chart-1: 215 25% 27%;
+  --chart-2: 210 90% 45%;
+  --chart-3: 220 70% 50%;
+  --chart-4: 142 69% 45%;
+  --chart-5: 210 20% 96%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark theme - Professional, refined, not too harsh */
+  --background: 215 28% 17%; /* Deep blue-gray background */
+  --foreground: 210 20% 98%; /* Off-white text for readability */
+  --muted: 215 25% 25%; /* Medium blue-gray for muted areas */
+  --muted-foreground: 215 20% 70%; /* Light blue-gray for secondary text */
+  --popover: 215 30% 15%; /* Slightly darker background for popovers */
+  --popover-foreground: 210 20% 98%; /* Same as primary text */
+  --card: 215 30% 15%; /* Slightly darker for cards */
+  --card-foreground: 210 20% 98%; /* Same as primary text */
+  --border: 215 25% 27%; /* Medium blue-gray for borders */
+  --input: 215 25% 27%; /* Medium blue-gray for input borders */
+  --primary: 210 90% 50%; /* Bright blue for primary elements */
+  --primary-foreground: 0 0% 100%; /* White for text on primary */
+  --primary-dark: 213 56% 15%; /* Already dark for the dark theme */
+  --primary-light: 196 100% 50%; /* Brighter blue for highlights in dark mode */
+  --secondary: 215 25% 25%; /* Medium blue-gray for secondary elements */
+  --secondary-foreground: 210 20% 98%; /* Light text on secondary */
+  --accent: 220 70% 55%; /* Vibrant blue accent, slightly brighter for dark mode */
+  --accent-foreground: 0 0% 100%; /* White for text on accent */
+  --destructive: 0 70% 50%; /* Deep red for destructive actions */
+  --destructive-foreground: 0 0% 100%; /* White for text on destructive */
+  --ring: 210 90% 50%; /* Bright blue for focus rings */
+  --success: 142 69% 45%; /* Same rich green for success states */
+  --sidebar-background: 215 30% 15%;
+  --sidebar-foreground: 210 20% 98%;
+  --sidebar-primary: 210 90% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 70% 55%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 215 25% 27%;
+  --sidebar-ring: 210 90% 50%;
+  --chart-1: 210 20% 98%;
+  --chart-2: 210 90% 50%;
+  --chart-3: 220 70% 55%;
+  --chart-4: 142 69% 45%;
+  --chart-5: 215 25% 25%;
+}
+
+.luxury {
+  /* Luxury theme - Gold and deep navy for a premium feel */
+  --background: 223 47% 11%; /* Deep navy background */
+  --foreground: 35 50% 97%; /* Soft cream white text for readability */
+  --muted: 223 40% 18%; /* Slightly lighter navy for muted areas */
+  --muted-foreground: 35 25% 85%; /* Muted gold for secondary text */
+  --popover: 223 47% 11%; /* Deep navy for popovers */
+  --popover-foreground: 35 50% 97%; /* Cream white for popover text */
+  --card: 223 50% 13%; /* Slightly lighter navy for cards */
+  --card-foreground: 35 50% 97%; /* Cream white for card text */
+  --border: 223 35% 22%; /* Medium navy for borders */
+  --input: 223 35% 22%; /* Medium navy for input borders */
+  --primary: 36 85% 58%; /* Rich gold for primary elements */
+  --primary-foreground: 223 47% 11%; /* Navy for text on gold */
+  --primary-dark: 36 60% 40%; /* Darker gold for shadows and depth */
+  --primary-light: 36 95% 68%; /* Lighter gold for highlights */
+  --secondary: 223 40% 18%; /* Medium navy for secondary elements */
+  --secondary-foreground: 35 50% 97%; /* Cream white for text */
+  --accent: 28 85% 55%; /* Burnt orange accent for contrast */
+  --accent-foreground: 35 50% 97%; /* Cream white on accent */
+  --destructive: 0 65% 50%; /* Rich red for destructive actions */
+  --destructive-foreground: 35 50% 97%; /* Cream white on destructive */
+  --ring: 36 85% 58%; /* Gold for focus rings */
+  --success: 140 55% 45%; /* Deep emerald green for success */
+  --sidebar-background: 223 47% 11%;
+  --sidebar-foreground: 35 50% 97%;
+  --sidebar-primary: 36 85% 58%;
+  --sidebar-primary-foreground: 223 47% 11%;
+  --sidebar-accent: 28 85% 55%;
+  --sidebar-accent-foreground: 35 50% 97%;
+  --sidebar-border: 223 35% 22%;
+  --sidebar-ring: 36 85% 58%;
+  --chart-1: 35 50% 97%;
+  --chart-2: 36 85% 58%;
+  --chart-3: 28 85% 55%;
+  --chart-4: 140 55% 45%;
+  --chart-5: 223 40% 18%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-inter;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+}
+
+/* Custom styles */
+.bg-primary-gradient {
+  @apply bg-gradient-to-r from-primary-dark to-primary;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-in-out forwards;
+}
+
+/* Course card hover effect */
+.course-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
