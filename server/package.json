@@ -19,6 +19,7 @@
     "zod": "^3.24.2",
     "zod-validation-error": "^3.4.0",
     "esbuild": "^0.25.0",
+    "express-session": "^1.18.1",
     "drizzle-zod": "^0.7.1"
   },
   "devDependencies": {
