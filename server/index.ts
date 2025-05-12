@@ -7,7 +7,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "https://wiser-material.netlify.app", // Replace with your actual Netlify URL
+  origin: "https://courses.dailybyte.xyz", // Replace with your actual Netlify URL
   credentials: true,
 }));
 app.use(express.json());
